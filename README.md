@@ -15,6 +15,7 @@ Here $x^\mu$ is the 4-vector representing the position of the particle in questi
 
 </aside>
 
+
 For this ray tracer we’ll use the geodesic equation to solve for the path that photons take in the vicinity of a black hole, and then find those that intersect with an accretion disk.
 
 # Schwarzschild Metric
