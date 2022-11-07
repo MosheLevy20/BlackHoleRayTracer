@@ -1,11 +1,11 @@
 #include <cmath>
 #include "chrisC.h"
-void calcChrisC(float r, float theta, float phi, float t, float chrisC1[4][4][4]){
+void calcChrisC(double r, double theta, double phi, double t, double chrisC1[4][4][4]){
 chrisC1[0][0][0] = 0;
-chrisC1[0][0][1] = -1.0/(std::pow(r, 2)*(-1 + 2/r));
+chrisC1[0][0][1] = -1.5/(std::pow(r, 2)*(-1 + 3.0/r));
 chrisC1[0][0][2] = 0;
 chrisC1[0][0][3] = 0;
-chrisC1[0][1][0] = -1.0/(std::pow(r, 2)*(-1 + 2/r));
+chrisC1[0][1][0] = -1.5/(std::pow(r, 2)*(-1 + 3.0/r));
 chrisC1[0][1][1] = 0;
 chrisC1[0][1][2] = 0;
 chrisC1[0][1][3] = 0;
@@ -17,22 +17,22 @@ chrisC1[0][3][0] = 0;
 chrisC1[0][3][1] = 0;
 chrisC1[0][3][2] = 0;
 chrisC1[0][3][3] = 0;
-chrisC1[1][0][0] = 2*(0.5 - 1.0/r)/std::pow(r, 2);
+chrisC1[1][0][0] = 3.0*(0.5 - 1.5/r)/std::pow(r, 2);
 chrisC1[1][0][1] = 0;
 chrisC1[1][0][2] = 0;
 chrisC1[1][0][3] = 0;
 chrisC1[1][1][0] = 0;
-chrisC1[1][1][1] = -2*(0.5 - 1.0/r)/(std::pow(r, 2)*std::pow(1 - 2/r, 2));
+chrisC1[1][1][1] = -0.33333333333333331*(0.5 - 1.5/r)/(std::pow(r, 2)*std::pow(0.33333333333333331 - 1/r, 2));
 chrisC1[1][1][2] = 0;
 chrisC1[1][1][3] = 0;
 chrisC1[1][2][0] = 0;
 chrisC1[1][2][1] = 0;
-chrisC1[1][2][2] = -2*r*(0.5 - 1.0/r);
+chrisC1[1][2][2] = -2*r*(0.5 - 1.5/r);
 chrisC1[1][2][3] = 0;
 chrisC1[1][3][0] = 0;
 chrisC1[1][3][1] = 0;
 chrisC1[1][3][2] = 0;
-chrisC1[1][3][3] = -2*r*(0.5 - 1.0/r)*std::sin(theta);
+chrisC1[1][3][3] = -2*r*(0.5 - 1.5/r)*std::pow(std::sin(theta), 2);
 chrisC1[2][0][0] = 0;
 chrisC1[2][0][1] = 0;
 chrisC1[2][0][2] = 0;
@@ -48,7 +48,7 @@ chrisC1[2][2][3] = 0;
 chrisC1[2][3][0] = 0;
 chrisC1[2][3][1] = 0;
 chrisC1[2][3][2] = 0;
-chrisC1[2][3][3] = -0.5*std::cos(theta);
+chrisC1[2][3][3] = -1.0*std::sin(theta)*std::cos(theta);
 chrisC1[3][0][0] = 0;
 chrisC1[3][0][1] = 0;
 chrisC1[3][0][2] = 0;
@@ -60,9 +60,9 @@ chrisC1[3][1][3] = 1.0/r;
 chrisC1[3][2][0] = 0;
 chrisC1[3][2][1] = 0;
 chrisC1[3][2][2] = 0;
-chrisC1[3][2][3] = 0.5*std::cos(theta)/std::sin(theta);
+chrisC1[3][2][3] = 1.0*std::cos(theta)/std::sin(theta);
 chrisC1[3][3][0] = 0;
 chrisC1[3][3][1] = 1.0/r;
-chrisC1[3][3][2] = 0.5*std::cos(theta)/std::sin(theta);
+chrisC1[3][3][2] = 1.0*std::cos(theta)/std::sin(theta);
 chrisC1[3][3][3] = 0;
 return;}

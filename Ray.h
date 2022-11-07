@@ -12,26 +12,26 @@ using namespace std;
 class Ray{
 
 private:
-    float pos[4];
-    float vel[4];
-    vector<vector<float>> worldLine;
+    double pos[4];
+    double vel[4];
+    vector<vector<double>> worldLine;
 
 public:
     Ray();
-    Ray(float pos[4], float vel[4]);
+    Ray(double pos[4], double vel[4]);
     //destructor
     ~Ray();
     //getters
-    float getR();
-    float getTheta();
-    float getPhi();
-    float getT();
-    float getVr();
-    float getVtheta();
-    float getVphi();
-    float getVt();
+    double getR();
+    double getTheta();
+    double getPhi();
+    double getT();
+    double getVr();
+    double getVtheta();
+    double getVphi();
+    double getVt();
     
-    vector<vector<float>> getWorldLine();
+    vector<vector<double>> getWorldLine();
 
     void geodesic();
 

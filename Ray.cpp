@@ -42,7 +42,7 @@ Ray::Ray(){
 
 }
 //constructor with arguments
-Ray::Ray(float pos[4], float vel[4]){
+Ray::Ray(double pos[4], double vel[4]){
     //cout << "ray constructor" << endl;
     // << "pos: "<< pos[0] << " " << pos[1] << " " << pos[2] << " " << pos[3] << endl;
     this->pos[0] = pos[0];
@@ -54,7 +54,7 @@ Ray::Ray(float pos[4], float vel[4]){
     this->vel[2] = vel[2];
     this->vel[3] = vel[3];
 
-    worldLine = vector<vector<float>>(0);
+    worldLine = vector<vector<double>>(0);
 }
 //destructors
 Ray::~Ray(){
@@ -63,16 +63,16 @@ Ray::~Ray(){
 }
 
 void Ray::geodesic(){
-    float dTau = 0.05;
-    float chrisC1[4][4][4];
+    double dTau = 0.005;
+    double chrisC1[4][4][4];
     //cout<<"chris inputs: "<<pos[1]<<","<<pos[2]<<","<<pos[3]<<endl;
     calcChrisC(pos[1], pos[2], pos[3], pos[0], chrisC1);
-    float newVel[4];
+    double newVel[4];
     for(int lamda = 0; lamda < 4; lamda++){
-        float a = 0;
+        double a = 0;
         for(int mu = 0; mu < 4; mu++){
             for(int nu = 0; nu < 4; nu++){
-                float cVal = chrisC1[lamda][mu][nu];
+                double cVal = chrisC1[lamda][mu][nu];
                 //cout<<"chrisC1["<<lamda<<"]["<<mu<<"]["<<nu<<"] = "<<cVal<<endl;
                 a -= cVal*vel[mu]*vel[nu];
             }
@@ -86,9 +86,45 @@ void Ray::geodesic(){
     for(int lamda = 0; lamda < 4; lamda++){
         pos[lamda] += newVel[lamda]*dTau;
     }
+    //reimplementing the above code using the runge kutta method
+    // double k1[4];
+    // double k2[4];
+    // double k3[4];
+    // double k4[4];
+
+    // for(int lamda = 0; lamda < 4; lamda++){
+    //     double a = 0;
+    //     for(int mu = 0; mu < 4; mu++){
+    //         for(int nu = 0; nu < 4; nu++){
+    //             double cVal = chrisC1[lamda][mu][nu];
+    //             //cout<<"chrisC1["<<lamda<<"]["<<mu<<"]["<<nu<<"] = "<<cVal<<endl;
+    //             a -= cVal*vel[mu]*vel[nu];
+    //         }
+    //     }
+    //     k1[lamda] = a*dTau;
+    // }
+    // for(int lamda = 0; lamda < 4; lamda++){
+    //     k2[lamda] = (vel[lamda] + k1[lamda]/2)*dTau;
+    // }
+
+    // for(int lamda = 0; lamda < 4; lamda++){
+    //     k3[lamda] = (vel[lamda] + k2[lamda]/2)*dTau;
+    // }
+
+    // for(int lamda = 0; lamda < 4; lamda++){
+    //     k4[lamda] = (vel[lamda] + k3[lamda])*dTau;
+    // }
+
+    // for(int lamda = 0; lamda < 4; lamda++){
+    //     vel[lamda] += (k1[lamda] + 2*k2[lamda] + 2*k3[lamda] + k4[lamda])/6;
+    // }
+
+    // for(int lamda = 0; lamda < 4; lamda++){
+    //     pos[lamda] += (vel[lamda] + (k1[lamda] + 2*k2[lamda] + 2*k3[lamda] + k4[lamda])/6)*dTau;
+    // }
 
     //define posVec
-    vector<float> posVec;
+    vector<double> posVec;
     posVec.push_back(pos[0]);
     posVec.push_back(pos[1]);
     posVec.push_back(pos[2]);
@@ -99,34 +135,34 @@ void Ray::geodesic(){
 
 
 
-vector<vector<float>> Ray::getWorldLine(){
+vector<vector<double>> Ray::getWorldLine(){
     return worldLine;
 }
 
 
 //getters
-float Ray::getR(){
+double Ray::getR(){
     return pos[1];
 }
-float Ray::getTheta(){
+double Ray::getTheta(){
     return pos[2];
 }
-float Ray::getPhi(){
+double Ray::getPhi(){
     return pos[3];
 }
-float Ray::getT(){
+double Ray::getT(){
     return pos[0];
 }
-float Ray::getVr(){
+double Ray::getVr(){
     return vel[1];
 }
-float Ray::getVtheta(){
+double Ray::getVtheta(){
     return vel[2];
 }
-float Ray::getVphi(){
+double Ray::getVphi(){
     return vel[3];
 }
-float Ray::getVt(){
+double Ray::getVt(){
     return vel[0];
 }
 

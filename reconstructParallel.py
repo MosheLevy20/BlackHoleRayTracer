@@ -15,6 +15,7 @@ for index,line in enumerate(lines[1:]):
     line = list(filter(None, line))
     #print(index/resx, line)
     if len(line) !=5:
+        print("error",line)
         continue
 
     

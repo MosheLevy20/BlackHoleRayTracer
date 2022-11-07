@@ -8,14 +8,14 @@ t, r, theta, phi = symbols("t r theta phi")
 s = symbols("s")
 coords = [t,r,theta, phi]
 G = 1 
-
+#TODO runge kutta, redshift
 #Schwartzschild Metric
-M = 1
+M = 1.5
 rS = 2*G*M
 g00 = -(1-rS/r)
 g11 = 1/(1-rS/r)
 g22 = r**2
-g33 = r**2*sin(theta)
+g33 = r**2*sin(theta)**2
 dTau = 50
 
 g = [[g00,0,0,0],
@@ -102,7 +102,7 @@ def ricci(g,i,j):
 #
 #
 
-cppFile = "#include <cmath>\n#include \"chrisC.h\"\nvoid calcChrisC(float r, float theta, float phi, float t, float chrisC1[4][4][4]){\n"
+cppFile = "#include <cmath>\n#include \"chrisC.h\"\nvoid calcChrisC(double r, double theta, double phi, double t, double chrisC1[4][4][4]){\n"
 for index, row in enumerate(chrisC):
 	for index2, column in enumerate(row):
 		for index3, value in enumerate(column):
