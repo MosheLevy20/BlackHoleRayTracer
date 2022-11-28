@@ -36,6 +36,9 @@ TODO
 
 TODO
 
+## Results
+![Schwarzschild Black Hole](Schwarzschild.png)
+
 ## Next Steps
 
 - Switch time integration to Runge Kutta
