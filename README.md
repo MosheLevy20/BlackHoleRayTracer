@@ -43,7 +43,8 @@ Below is the final result!
 ### Explanation of what you are seeing
 When light gets emitted from the accretion disk, its path is not a straight line (from the perspective of a distant observer. Instead it follows a warped path, as illustrated by the figure below. The figure shows the path of a small sample of rays from the camera.
 
-![Ray Path Around Black Hold](lightBending2D2.png)
+![Ray Path Around Black Hole](lightBending2D2.png)
+
 
 So light emitted from the far side of the black hole can actually bend around it and reach our camera. The interpretation of the image is now aparent.
 
