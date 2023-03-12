@@ -2,7 +2,7 @@
 
 # Geodesic Equation
 
-The geodesic equation in general relativity is analogous to $\vec{F}=m\vec{a}$ in classical mechanics. It is typically written as:
+The geodesic equation in general relativity is analogous to $\vec{F}=m\vec{a}$  in classical mechanics. It is typically written as:
 
 $$
 \frac{d^2x^{\mu}}{d\tau^2} = -\Gamma^\mu_{\alpha\beta}\frac{dx^{\alpha}}{d\tau}\frac{dx^{\beta}}{d\tau}
@@ -20,7 +20,15 @@ For this ray tracer we’ll use the geodesic equation to solve for the path that
 
 The typical way we obtain the Christoffel symbols is via the metric. 
 
-TODO
+
+>The metric $g_{\mu \nu}$ is a tensor that allows us to calculate distances in spacetime (essentially generalizing the pythagorean theorem). The "spacetime interval" analogous to distance is given by $ds^2=g_{\mu \nu}dx^\mu dx^\nu$. We recover the pythagorean theorem by using the "flat metric" where all the diagonal elements of $g$ are 1, and all the off diagonals are 0. The metric alone is enough to fully determine the geometry of spacetime.
+
+The equation relating the Christoffel symbols to the metric is
+$$\Gamma^\mu_{\rho \sigma}=\frac{1}{2} g^{\mu \alpha}(g_{\alpha \rho, \sigma} + g_{\alpha \sigma, \rho } - g_{\rho \sigma, \alpha})$$
+
+Here $g^{\mu \nu}$ is the inverse of $g_{\mu \nu}$, and the commas indicate differentiation WRT whichever variable follows. 
+
+The Schwarzschild metric describes spacetime in the vicinity of a non-rotating uncharged black hole. It is given by
 
 # Implementation
 
