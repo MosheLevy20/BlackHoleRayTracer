@@ -41,7 +41,7 @@ Below is the final result!
 ![Schwarzschild Black Hole](Schwarzschild.png)
 ### Explanation of what you are seeing
 When light gets emitted from the accretion disk, its path is not a straight line (from the perspective of a distant observer. Instead it follows a warped path, as illustrated by the figure below. The figure shows the path of a small sample of rays from the camera.
-![Ray Path Around Black Hold](rays.png)
+![Ray Path Around Black Hold](lightBending2D2.png)
 
 
 ## Next Steps
