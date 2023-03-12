@@ -118,7 +118,7 @@ int main()
                 //if ray is in accretion disk
                 double rr = ray.getR();
                 double theta = ray.getTheta();
-                //check if ray crossed accretion disk (theta = pi/2)
+                //check if ray crossed accretion disk (theta = pi/2) [edit this to change the scene, perhaps add a checkCollisions function]
                 if (abs(theta - M_PI/2)<0.01 && rr > 1.02*R && rr < 10*R)
                 {
                      
@@ -147,6 +147,7 @@ int main()
                 }
             
             }
+            //the following redundant code is for debugging purposes
             if (abs(ray.getR()) < 1.02*R && !written)
             {
                 //draw pixel black
