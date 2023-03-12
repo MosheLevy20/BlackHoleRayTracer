@@ -43,10 +43,12 @@ $$\Gamma^\mu_{\rho \sigma}=\frac{1}{2} g^{\mu \alpha}(g_{\alpha \rho, \sigma} + 
 
 Here $g^{\mu \nu}$ is the inverse of $g_{\mu \nu}$, and the commas indicate differentiation WRT whichever variable follows. 
 
-The Schwarzschild metric describes spacetime in the vicinity of a non-rotating uncharged black hole. It is given (in spherical coordinates centered on the black hole) by
+The metric I used to generate the image in the results section is the Schwarzschild metric. The Schwarzschild metric describes spacetime in the vicinity of a non-rotating uncharged black hole. It is given (in spherical coordinates centered on the black hole) by
 ```math
 g_{\mu \nu} = \begin{pmatrix}-\left( 1-\frac{r_s}{r}\right) & 0 & 0 & 0\\ 0 & \left( 1-\frac{r_s}{r}\right)^{-1} & 0 & 0\\ 0 & 0 & r^2 & 0\\ 0 & 0 & 0 & r^2 sin^2(\theta)\\\end{pmatrix}
 ```
+Here $r_s$ is the Schwarzschild radius (A.K.A the radius of no return). Past this radius nothing, not even light, can escape the black hole.
+
 # Implementation
 
 ## Sympy
@@ -61,7 +63,7 @@ TODO
 
 TODO
 
-## Results
+# Results
 Below is the final result!
 
 ![Schwarzschild Black Hole](Schwarzschild.png)
