@@ -51,6 +51,13 @@ Here $r_s$ is the Schwarzschild radius (A.K.A the radius of no return). Past thi
 
 # Implementation
 
+To generate images there is a four step process:
+* Calculate the Christoffel symbols from the metric
+* Initialize the light ray positions and momenta (i.e. directions), with one for each pixel in the camera
+* Use the geodesic equation to integrate the light rays postition backward in time
+* Determine which light rays intersect with the accretion disk, and color the corresponding pixel in the ouput image accordingly
+
+
 ## Sympy
 
 TODO
@@ -73,7 +80,7 @@ When light gets emitted from the accretion disk, its path is not a straight line
 ![Ray Path Around Black Hole](lightBending2D2.png)
 
 
-So light emitted from the far side of the black hole can actually bend around it and reach our camera. The interpretation of the image is now aparent.
+So light emitted from the far side of the black hole can actually bend around it and reach our camera. The interpretation of the image is now apparent.
 
 ![Schwarzschild Black Hole](SchwarzschildExplained.jpg)
 
