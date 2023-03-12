@@ -5,7 +5,7 @@ In Einstein's theory of general relativity (GR), light doesn't necessarily trave
 
 # Usage
 
-The default setup is a Schwazschild black hole with a simple accretion disk. To run, simply execute the file GR_RayTracer.py, it will compile and run the C++ code. To modify the geometry of the scene simply edit the metric ($g$) and its inverse in GR_RayTracer.py. Modifying the scene is slightly more involved, currently the accretion disk is implemented via an if statement in testGR.cpp
+The default setup is a Schwazschild black hole with a simple accretion disk. To run, simply execute the python file GR_RayTracer.py, it will compile and run the C++ code. To modify the geometry of the scene simply edit the metric ($g$) and its inverse in GR_RayTracer.py. Modifying the scene is slightly more involved, currently the accretion disk is implemented via an if statement in testGR.cpp
 ```C 
 if (abs(theta - M_PI/2)<0.01 && rr > 1.02*R && rr < 10*R)
 ```
@@ -60,11 +60,11 @@ To generate images there is a four step process:
 
 ## Sympy
 
-TODO
+Calculating the Christoffel symbols from the metric is done via the equation from the theory section, using the python SymPy library. The Christoffel symbols are then written to a C++ file (chrisC.cpp), where they can be accessed for the time integration.
 
 ## Ray Initialization (Camera)
 
-TODO
+
 
 ## C++ with OpenMPI for Time Integration
 
