@@ -45,6 +45,9 @@ When light gets emitted from the accretion disk, its path is not a straight line
 
 ![Ray Path Around Black Hold](lightBending2D2.png)
 
+So light emitted from the far side of the black hole can actually bend around it and reach our camera. The interpretation of the image is now aparent.
+
+![Schwarzschild Black Hole](SchwarzschildExplained.png)
 
 ## Next Steps
 
