@@ -66,7 +66,7 @@ To generate images there is a four step process:
 Calculating the Christoffel symbols from the metric is done via the equation from the theory section, using the python SymPy library. The Christoffel symbols are then written to a C++ file (chrisC.cpp), where they can be accessed for the time integration. 
 
 ## Ray Initialization (testGR.cpp)
-As described in the theory section, we send a light ray out of the camera at a slightly different angle for each pixel. To acheive this we create a ray object which has a 4-position and 4-momentum. The postions are all set to the same point, but the momenta vary depending on the pixel in order to send them in the right direction.
+As described in the theory section, we send a light ray out of the camera at a slightly different angle for each pixel. To acheive this we create a ray object which has a 4-position and 4-momentum. The postions are all initialized to the same point, but the momenta vary depending on the pixel in order to send them in the right direction.
 
 
 ## C++ with OpenMPI for Time Integration (testGR.cpp)
