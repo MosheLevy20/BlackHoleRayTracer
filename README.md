@@ -15,9 +15,13 @@ This isn't very generalizable, so I'd recommend implementing a function that che
 
 Below is a brief review of the math/physics behind this project. If that's not your cup of tea, you can skip to either the implementation or results sections.
 
+## Ray Tracing
+
+Before getting to GR, we'll first review the basics of ray tracing.
+
 ## Geodesic Equation
 
-The geodesic equation in general relativity is analogous to $\vec{F}=m\vec{a}$  in classical mechanics. It is typically written (in the case of no external forces) as:
+The geodesic equation in general relativity is analogous to $\vec{F}=m\vec{a}$ in classical mechanics. It is typically written (in the case of no external forces) as:
 
 $$
 \frac{d^2x^{\mu}}{d\tau^2} = -\Gamma^\mu_{\alpha\beta}\frac{dx^{\alpha}}{d\tau}\frac{dx^{\beta}}{d\tau}
@@ -58,17 +62,15 @@ To generate images there is a four step process:
 * Determine which light rays intersect with the accretion disk, and color the corresponding pixel in the ouput image accordingly
 
 
-## Sympy
+## Sympy (GR_RayTracer.py)
+Calculating the Christoffel symbols from the metric is done via the equation from the theory section, using the python SymPy library. The Christoffel symbols are then written to a C++ file (chrisC.cpp), where they can be accessed for the time integration. 
 
-Calculating the Christoffel symbols from the metric is done via the equation from the theory section, using the python SymPy library. The Christoffel symbols are then written to a C++ file (chrisC.cpp), where they can be accessed for the time integration.
-
-## Ray Initialization (Camera)
-
+## Ray Initialization (testGR.cpp)
+As described in the theory section, we send a light ray out of the camera at a slightly different angle for each pixel. To acheive this we create a ray object which has a 4-position and 4-momentum. The postions are all set to the same point, but the momenta vary depending on the pixel in order to send them in the right direction.
 
 
-## C++ with OpenMPI for Time Integration
-
-TODO
+## C++ with OpenMPI for Time Integration (testGR.cpp)
+For each ray we repeatedly call the class method ```Ray::geodesic()``` (which uses the euler method to integrate the geodesic equation) until the ray either hits the accretion disk, hits the black hole, or goes far enough away from the black hole that we can confidently say it is never coming back. If a ray hits the accretion disk, we color the corresponding pixel red (with brightness varying as $1/r$ for visualization purposes) To speed up this process we use OpenMPI to calculate the paths of many rays in parallel, this can be done since the rays don't interact with each other.
 
 # Results
 Below is the final result!
