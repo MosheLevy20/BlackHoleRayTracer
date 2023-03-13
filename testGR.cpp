@@ -73,25 +73,6 @@ int main()
         for (int j =1; j < yres; j++)
         {
             //generate ray
-            //ray position = camera position
-            
-            
-            //get ray direction in cartesian coordinates
-            //Vector3 rayDirSph = camDir + perp1*((i - xres/2)/xres)*0.1 + perp2*((j - yres/2)/yres)*0.1;
-            //normalize ray direction
-            //rayDirSph.normalize();
-            //rayDirSph *= 0.000;
-
-            //convert ray direction to spherical coordinates
-            //rayDirSph = cart2sph(rayDirSph);
-            //convert ray position to spherical coordinates
-            //rayDirSph.print();
-            //get array from vector3
-            //double rayPosArr[4] = {t ,rayPosSph.getX(), rayPosSph.getY(), rayPosSph.getZ()};
-            // double rayPosArr[4] = {t ,15*R, 0.1, M_PI/2};
-            // double a = 0.06*(i-xres/2)/xres/4;
-            // double b = 0.06*(j-yres/2)/yres;
-            // double rayDirArr[4] = {1 ,0.01,a,b};
         
             double r0= 15*R;
             double theta0 = M_PI/2.1;
@@ -100,13 +81,9 @@ int main()
             //4 vec array k
             double k[4] = {-1,-1,rho*(2*i/xres-1)*tf2, -(1-2*j/yres)*tf2};
             double rayPosArr[4] = {0 ,r0, theta0, phi0};
-            // 	norm = math.sqrt(k[1]**2+k[2]**2)
-            // 	k[1] /= norm
-            // 	k[2] /= norm
-            
             Ray ray(rayPosArr, k);
+            
             //while ray is not in the black hole and not too far away
-            //cout << "ray r: " << ray.getR() << endl;
             int steps = 0;
             bool written = false;
             //
@@ -129,14 +106,7 @@ int main()
                     written = true;
                     break;
                 }
-                
-
                
-                //cout ray pos
-                //cout << "ray pos: " << ray.getR() << " " << ray.getTheta() << " " << ray.getPhi() << endl;
-                //cout ray dir
-                //cout << "ray dir: " << ray.getVr() << " " << ray.getVtheta() << " " << ray.getVphi() << endl;
-                //break;
                 steps++;
                 if (steps > 100000)
                 {
@@ -165,15 +135,7 @@ int main()
                 //cout<<"missed"<<endl;
                 myfile << black;
             }
-        
-            
-                 
-            //get ray color
-            //if ray is in the black hole or too far away
-            
-            //if last pixel in row and column
-            
-            
+ 
         }
     //print progress
     count += 1;
