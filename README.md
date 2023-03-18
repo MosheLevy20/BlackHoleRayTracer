@@ -70,7 +70,7 @@ As described in the theory section, we send a light ray out of the camera at a s
 
 
 ## C++ with OpenMPI for Time Integration (testGR.cpp)
-For each ray we repeatedly call the class method ```Ray::geodesic()``` (which uses the euler method to integrate the geodesic equation) until the ray either hits the accretion disk, hits the black hole, or goes far enough away from the black hole that we can confidently say it is never coming back. If a ray hits the accretion disk, we color the corresponding pixel red (with brightness varying as $1/r$ for visualization purposes) To speed up this process we use OpenMPI to calculate the paths of many rays in parallel, this can be done since the rays don't interact with each other.
+For each ray we repeatedly call the class method ```Ray::geodesic()``` (which uses the euler method to integrate the geodesic equation) until the ray either hits the accretion disk, hits the black hole, or goes far enough away from the black hole that we can confidently say it is never coming back. If a ray hits the accretion disk, we color the corresponding pixel red (with brightness varying as $1/r$ for visualization purposes) To speed up this process we use OpenMPI to calculate the paths of many rays in parallel, this can be done since the rays don't interact with each other. The file reconstructParallel.py creates the final image from the raw output.
 
 # Results
 Below is the final result!
@@ -82,9 +82,12 @@ When light gets emitted from the accretion disk, its path is not a straight line
 ![Ray Path Around Black Hole](lightBending2D2.png)
 
 
-So light emitted from the far side of the black hole can actually bend around it and reach our camera. The interpretation of the image is now apparent.
+So light emitted from the far side of the black hole can actually bend around it and reach our camera. The interpretation of the image is now apparent. At the center of the image, the black region represents the black hole itself (though technically it is empty space, since all the mass is in the singularity at the center). The red regions around the black hole show a warped view of the accretion disk (without the deflection of light the accretion disk would look similar to the rings of Saturn), see the figure below.
 
 ![Schwarzschild Black Hole](SchwarzschildExplained.jpg)
+
+
+
 
 ## Next Steps
 
