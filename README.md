@@ -17,7 +17,7 @@ Below is a brief review of the math/physics behind this project. If that's not y
 
 ## Ray Tracing
 
-Before getting to GR, we'll first review the basics of ray tracing.
+Before getting to GR, a review the basics of ray tracing is in order.
 
 ![Ray Tracing Cartoon](ray-tracing-image.jpg)
 
@@ -36,10 +36,10 @@ $$
 Here $x^\mu$ is the 4-vector representing the position of the particle in question, $\tau$ is the proper time of the particle, and $\Gamma^\mu_{\alpha\beta}$ represents the Christoffel symbols (additionally note that the RHS is using Einstein summation notation). 
 
 
-> Christoffel symbols quantify how the coordinates we are using change relative to free-falling (inertial) coordinates. These changes manifest as inertial “forces” when we observe from our non-inertial coordinates. An analogy from classical mechanics is the centrifugal and Coriolis force terms that arise in a polar coordinate system. This is more than just an analogy though, by comparing the known equations of motion for a free moving particle to the geodesic equation, we can actually read off the Christoffel symbols for the polar coordinates: $\ddot{r}=r\dot{\theta}^2\rightarrow\Gamma^r_{\theta\theta}=-r$ and $\ddot{\theta}=-\frac{2}{r}\dot{r}\dot{\theta}\rightarrow \Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}=\frac{1}{r}$. The punchline of GR is that gravity is just an inertial force.
+> Christoffel symbols quantify how the coordinates we are using change relative to free-falling (inertial) coordinates. These changes manifest as inertial “forces” when we observe from our non-inertial coordinates. An analogy from classical mechanics is the centrifugal and Coriolis force terms that arise in a polar coordinate system. This is more than just an analogy though, by comparing the known equations of motion for a free moving particle to the geodesic equation, we can actually read off the Christoffel symbols for the polar coordinates: $\ddot{r}=r\dot{\theta}^2\rightarrow\Gamma^r_{\theta\theta}=-r$ and $\ddot{\theta}=-\frac{2}{r}\dot{r}\dot{\theta}\rightarrow \Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}=\frac{1}{r}$. The punchline of GR is that gravity is just an inertial force, and the reason that "normal" coordinates are non-inertial is because the geometry of spacetime is curved.
 
 
-This ray tracer uses the geodesic equation to solve for the path that photons take in the vicinity of a black hole (since they are not simply straight lines), and then finds those that intersect with an accretion disk.
+This ray tracer uses the geodesic equation to solve for the path that photons take in the vicinity of a black hole (since they are not simply straight lines), and then finds those that intersect with an accretion disk to generate an image.
 
 ## Schwarzschild Metric
 
@@ -64,7 +64,7 @@ Here $r_s$ is the Schwarzschild radius (A.K.A the radius of no return). Past thi
 To generate images there is a four step process:
 * Calculate the Christoffel symbols from the metric
 * Initialize the light ray positions and momenta (i.e. directions), with one for each pixel in the camera
-* Using the Christoffel symbols previously calculates, integrate the geodesic equation to find the path that each light ray takes
+* Using the Christoffel symbols previously calculated, integrate the geodesic equation to find the path that each light ray takes
 * Determine which light rays intersect with the accretion disk, and color the corresponding pixel in the ouput image accordingly
 
 
@@ -72,11 +72,11 @@ To generate images there is a four step process:
 Calculating the Christoffel symbols from the metric is done via the equation from the theory section, using the python SymPy library. The Christoffel symbols are then written to a C++ file (chrisC.cpp), where they can be accessed for the time integration. 
 
 ## Ray Initialization (testGR.cpp)
-As described in the theory section, a light ray is sent out of the camera at a slightly different angle for each pixel. To acheive this a ray object is created which has a 4-position and 4-momentum. The postions are all initialized to the same point, but the momenta vary depending on the pixel in order to send them in the right direction.
+As described in the theory section, a light ray is sent out of the camera at a slightly different angle for each pixel. To acheive this, a ray object is created which has a 4-position and 4-momentum. The postions are all initialized to the same point, but the momenta vary depending on the pixel in order to send them in the right direction.
 
 
 ## C++ with OpenMPI for Time Integration (testGR.cpp)
-For each ray the class method ```Ray::geodesic()``` (which uses the euler method to integrate the geodesic equation) is repeatedly called until the ray either hits the accretion disk, hits the black hole, or goes far enough away from the black hole that we can confidently say it is never coming back. If a ray hits the accretion disk, we color the corresponding pixel red (with brightness varying as $1/r$ for visualization purposes) To speed up this process we use OpenMPI to calculate the paths of many rays in parallel, this can be done since the rays don't interact with each other. The file reconstructParallel.py creates the final image from the raw output.
+For each ray the class method ```Ray::geodesic()``` (which uses the euler method to integrate the geodesic equation) is repeatedly called until the ray either hits the accretion disk, hits the black hole, or goes far enough away from the black hole that we can confidently say it is never coming back. If a ray hits the accretion disk, the corresponding pixel color is colored red (with brightness varying as $1/r$ for visualization purposes) To speed up this process OpenMPI is used to calculate the paths of many rays in parallel, this can be done since the rays don't interact with each other. The file reconstructParallel.py creates the final image from the raw output.
 
 # Results
 Below is the final result!
@@ -88,7 +88,7 @@ When light gets emitted from the accretion disk, its path is not a straight line
 ![Ray Path Around Black Hole](lightBending2D2.png)
 
 
-So light emitted from the far side of the black hole can actually bend around it and reach our camera. The interpretation of the image is now apparent. At the center of the image, the black region represents the black hole itself (though technically it is empty space, since all the mass is in the singularity at the center). The red regions around the black hole show a warped view of the accretion disk (without the deflection of light the accretion disk would look similar to the rings of Saturn), see the figure below.
+So light emitted from the far side of the black hole can actually bend around it and reach the camera. The interpretation of the image is now apparent. At the center of the image, the black region represents the black hole itself (though technically it is empty space, since all the mass is in the singularity at the center). The red regions around the black hole show a warped view of the accretion disk (without the deflection of light the accretion disk would look similar to the rings of Saturn). Both the top and bottom of the far side (i.e. beyond the black hole) of the accretion disk are visible. See the figure below.
 
 ![Schwarzschild Black Hole](SchwarzschildExplained.jpg)
 
