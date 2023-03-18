@@ -86,42 +86,6 @@ void Ray::geodesic(){
     for(int lamda = 0; lamda < 4; lamda++){
         pos[lamda] += newVel[lamda]*dTau;
     }
-    //reimplementing the above code using the runge kutta method
-    // double k1[4];
-    // double k2[4];
-    // double k3[4];
-    // double k4[4];
-
-    // for(int lamda = 0; lamda < 4; lamda++){
-    //     double a = 0;
-    //     for(int mu = 0; mu < 4; mu++){
-    //         for(int nu = 0; nu < 4; nu++){
-    //             double cVal = chrisC1[lamda][mu][nu];
-    //             //cout<<"chrisC1["<<lamda<<"]["<<mu<<"]["<<nu<<"] = "<<cVal<<endl;
-    //             a -= cVal*vel[mu]*vel[nu];
-    //         }
-    //     }
-    //     k1[lamda] = a*dTau;
-    // }
-    // for(int lamda = 0; lamda < 4; lamda++){
-    //     k2[lamda] = (vel[lamda] + k1[lamda]/2)*dTau;
-    // }
-
-    // for(int lamda = 0; lamda < 4; lamda++){
-    //     k3[lamda] = (vel[lamda] + k2[lamda]/2)*dTau;
-    // }
-
-    // for(int lamda = 0; lamda < 4; lamda++){
-    //     k4[lamda] = (vel[lamda] + k3[lamda])*dTau;
-    // }
-
-    // for(int lamda = 0; lamda < 4; lamda++){
-    //     vel[lamda] += (k1[lamda] + 2*k2[lamda] + 2*k3[lamda] + k4[lamda])/6;
-    // }
-
-    // for(int lamda = 0; lamda < 4; lamda++){
-    //     pos[lamda] += (vel[lamda] + (k1[lamda] + 2*k2[lamda] + 2*k3[lamda] + k4[lamda])/6)*dTau;
-    // }
 
     //define posVec
     vector<double> posVec;
